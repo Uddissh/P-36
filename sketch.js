@@ -71,7 +71,7 @@ function draw() {
     addFood.show();
     dog.addImage(Dog);
    }
- 
+   console.log(gameState);
   drawSprites();
 }
 

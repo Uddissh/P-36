@@ -34,20 +34,24 @@ function setup() {
   });
    
   dog=createSprite(200,300,150,150);
-  dog.addImage(Dog);
+  dog.addImage("good dog", Dog);
+  dog.addImage("nice dog", happyDog);
   dog.scale=0.15;
   
   feed=createButton("Feed the dog");
   feed.position(700,95);
-  feed.mousePressed(feedDog);
-
+  
   addFood=createButton("Add Food");
   addFood.position(800,95);
-  addFood.mousePressed(addFoods);
+  
 }
 
 function draw() {
   currentTime=hour();
+
+  feed.mousePressed(feedDog);
+  addFood.mousePressed(addFoods);
+
   if(currentTime==(lastFed+1)){
       update("Playing");
       foodObj.garden();
@@ -84,8 +88,8 @@ function readStock(data){
 
 //function to update food stock and last fed time
 function feedDog(){
-  dog.addImage(happyDog);
-
+  console.log("hi")
+  dog.changeImage("nice dog")
   foodObj.updateFoodStock(foodObj.getFoodStock()-1);
   database.ref('/').update({
     Food:foodObj.getFoodStock(),
